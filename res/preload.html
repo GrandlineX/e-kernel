@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Startup</title>
+  <style>
+
+
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
+      body{
+          background-color: rgb(33, 33, 33);
+      }
+      .cotainer{
+          width: 100%;
+          height: 400px;
+          background-color: #161618;
+          text-align: center;
+          font-family: Arial, sans-serif;
+          color: #ffffff;
+      }
+      .cotainer h1,.cotainer h4{
+          padding: 4px;
+          transform: translateY(-10px);
+      }
+      .version{
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          padding-right: 8px;
+          padding-bottom: 8px;
+          font-family: Arial, sans-serif;
+          color: #ffffff;
+      }
+
+
+  </style>
+  <script>
+
+    window.onload = function() {
+      let search=document.location.search;
+      let elements=search.replace("?","").split("&")
+      version=elements[0];
+      message=decodeURI(elements[1]);
+      document.getElementById("version-field").innerText = ""+version;
+      document.getElementById("message-field").innerText = ""+message;
+    }
+  </script>
+</head>
+<body>
+<div class="cotainer">
+  <img src="img/logo.png"
+       width="350"
+       alt="Shrk"/>
+
+  <h4 id="message-field" > </h4>
+</div>
+<span class="version">v <span id="version-field"></span> </span>
+</body>
+</html>

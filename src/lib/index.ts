@@ -10,8 +10,19 @@ import {
   IDataBase,
 } from '@grandlinex/core';
 import { BaseClient } from 'classes';
+import { BrowserWindow, Tray } from 'electron';
 
-export type IKernel = ICoreKernel<ICoreCClient>;
+export interface IKernel extends ICoreKernel<ICoreCClient> {
+  closeAllWindows(): void;
+  getPreloadRoot(): string;
+  getAppRoot(): string;
+  setMainWindow(window: BrowserWindow | null): void;
+  getMainWindow(): BrowserWindow | null;
+  setTray(tray: Tray | null): void;
+  getTray(): Tray | null;
+  openNewWindow(): void;
+  reload(): void;
+}
 
 export type IBaseKernelModule<
   T extends IDataBase<any> | null,
