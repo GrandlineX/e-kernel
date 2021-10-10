@@ -1,6 +1,18 @@
 import { CoreAction } from '@grandlinex/core';
-import { IBaseAction } from '../lib';
+import { ipcMain, IpcMainInvokeEvent } from 'electron';
+import { IBaseAction, IKernel } from '../lib';
 
 export default abstract class BaseAction
   extends CoreAction
-  implements IBaseAction {}
+  implements IBaseAction
+{
+  abstract handler(event: IpcMainInvokeEvent, args: any): any;
+  register(): void {
+    this.log('register');
+    ipcMain.handle(this.chanel, this.handler);
+  }
+
+  getEKernel(): IKernel {
+    return this.getKernel() as IKernel;
+  }
+}

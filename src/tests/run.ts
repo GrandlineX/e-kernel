@@ -1,12 +1,7 @@
 import * as Path from 'path';
 import { createFolderIfNotExist } from '@grandlinex/core';
 import ElectronKernel from '../ElectronKernel';
-import { app } from 'electron';
-import installExtension, {
-  REACT_DEVELOPER_TOOLS,
-  REDUX_DEVTOOLS,
-  VUEJS3_DEVTOOLS
-} from 'electron-devtools-installer';
+
 const appName = 'TestKernel';
 const appCode = 'tkernel';
 const testPathData = Path.join(__dirname, '..','..', 'data');

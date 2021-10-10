@@ -1,5 +1,4 @@
-import { app, Menu, Tray } from 'electron';
-import Path from 'path';
+import { Menu, Tray } from 'electron';
 import { IKernel } from '../lib';
 import createWindow from './MainWindow';
 
