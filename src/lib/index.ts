@@ -24,6 +24,11 @@ export interface IKernel extends ICoreKernel<ICoreCClient> {
   reload(): void;
 }
 
+export interface KeyType {
+  id: number;
+  auth: Buffer;
+  iv: Buffer;
+}
 export type IBaseKernelModule<
   T extends IDataBase<any> | null,
   P extends BaseClient | null,

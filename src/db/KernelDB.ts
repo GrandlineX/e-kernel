@@ -1,5 +1,5 @@
 import { SQLightConnector } from '@grandlinex/core';
-import { IBaseKernelModule } from '../lib';
+import { IBaseKernelModule, KeyType } from '../lib';
 
 export default class KernelDB extends SQLightConnector {
   constructor(module: IBaseKernelModule<any, any, any>) {
@@ -9,7 +9,7 @@ export default class KernelDB extends SQLightConnector {
   async initNewDB(): Promise<any> {
     await this.execScripts([
       {
-        exec: 'CREATE TABLE main.keys(id INTEGER PRIMARY KEY , iv TEXT, auth BLOB);',
+        exec: 'CREATE TABLE main.keys(id INTEGER PRIMARY KEY , iv BLOB, auth BLOB);',
         param: [],
       },
     ]);
