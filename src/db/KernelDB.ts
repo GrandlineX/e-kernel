@@ -15,7 +15,7 @@ export default class KernelDB extends SQLightConnector {
     ]);
   }
 
-  setKey(iv: string, auth: any): number {
+  setKey(iv: Buffer, auth: Buffer): number {
     const query = this.db?.prepare(
       `REPLACE INTO main.keys (iv ,auth) VALUES (?,?);`
     );
