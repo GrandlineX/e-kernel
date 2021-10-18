@@ -3,7 +3,10 @@ import { IKernel } from '../lib';
 import createWindow from './MainWindow';
 
 export default function initTray(kernel: IKernel) {
-  const tray = new Tray(kernel.getGlobalConfig().icon);
+  if (kernel.getTray() !== null) {
+    return;
+  }
+  const tray = new Tray(kernel.getGlobalConfig().img.thump);
   const contextMenu = Menu.buildFromTemplate([
     {
       label: 'Open',

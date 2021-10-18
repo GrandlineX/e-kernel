@@ -47,7 +47,14 @@ export default class ElectronKernel
     this.tray = null;
     this.mainWindow = null;
     this.preloadWindow = null;
-    this.globalConfig.icon = Path.join(
+    this.globalConfig.img.icon = Path.join(
+      __dirname,
+      '..',
+      'res',
+      'img',
+      'favicon.png'
+    );
+    this.globalConfig.img.thump = Path.join(
       __dirname,
       '..',
       'res',
@@ -58,25 +65,28 @@ export default class ElectronKernel
     this.setTrigerFunction('start', this.electronStart);
   }
 
+  async setPreload(title: string): Promise<void> {
+    if (this.preloadWindow === null) {
+      this.preloadWindow = new BrowserWindow({
+        width: 600,
+        height: 450,
+        resizable: false,
+        icon: this.getGlobalConfig().img.icon,
+        frame: false,
+      });
+      this.preloadWindow.setTitle(this.getAppName());
+    }
+    const version = app.getVersion();
+    await this.preloadWindow.loadFile(this.preloadRoot, {
+      search: `${version}& ${title}`,
+    });
+  }
+
   async electronPre(ik: this): Promise<void> {
     this.debug('preload');
     return new Promise((resolve) => {
       app.on('ready', async () => {
-        this.preloadWindow = new BrowserWindow({
-          width: 600,
-          height: 450,
-          resizable: false,
-          icon: this.getGlobalConfig().icon,
-          frame: false,
-        });
-        const version = app.getVersion();
-        await this.preloadWindow.loadFile(this.preloadRoot, {
-          search: `${version}& Starting`,
-        });
-
-        this.preloadWindow.setTitle(this.getAppName());
-
-        initTray(this);
+        await this.setPreload('Starting');
         resolve();
       });
     });
@@ -84,6 +94,7 @@ export default class ElectronKernel
 
   async electronStart(ik: this): Promise<void> {
     await sleep(2000);
+    initTray(this);
     const newUser = !this.getDb()?.configExist('hash');
     this.preloadWindow?.hide();
     createWindow(this, newUser);
