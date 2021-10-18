@@ -3,7 +3,7 @@ import { IBaseKernelModule, KeyType } from '../lib';
 
 export default class KernelDB extends SQLightConnector {
   constructor(module: IBaseKernelModule<any, any, any>) {
-    super(module, '0');
+    super(module, '1');
   }
 
   async initNewDB(): Promise<any> {
