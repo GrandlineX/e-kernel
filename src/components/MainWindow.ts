@@ -13,7 +13,7 @@ export default async function createWindow(kernel: IKernel, newUser: boolean) {
       contextIsolation: false,
       additionalArguments: [isDev ? '1' : '0', app.getVersion()],
     },
-    icon: conf.icon,
+    icon: conf.img.icon,
   });
   mainWindow.setMenu(null);
 

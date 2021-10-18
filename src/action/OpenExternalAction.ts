@@ -18,7 +18,7 @@ export default class OpenExternalAction extends BaseAction {
       const mainWindow = new BrowserWindow({
         width: 1024,
         height: 600,
-        icon: this.getKernel().getGlobalConfig().icon,
+        icon: this.getKernel().getGlobalConfig().img.icon,
       });
       mainWindow.setMenu(null);
       mainWindow.loadURL(args.url);
