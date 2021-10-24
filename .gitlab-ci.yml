@@ -11,7 +11,7 @@ cache:
 
 docs:
   allow_failure: true
-  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/node:latest
+  image: ${DOCKER_IMG_PRE}/node:latest
   tags:
     - docker
   stage: docs
@@ -33,7 +33,7 @@ docs:
 
 lint:scan:prod:
   allow_failure: false
-  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/node:latest
+  image: ${DOCKER_IMG_PRE}node:latest
   tags:
     - docker
   stage: scan
@@ -81,7 +81,7 @@ sec:scan:prod:
 
 
 make:build:prod:
-  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/node:latest
+  image: ${DOCKER_IMG_PRE}node:latest
   tags:
     - docker
   stage: build
@@ -104,7 +104,7 @@ make:build:prod:
 
 
 package:peploy:prod:
-  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/node:latest
+  image: ${DOCKER_IMG_PRE}node:latest
   tags:
     - docker
   stage: publish
@@ -129,7 +129,7 @@ package:peploy:prod:
 
 lint:scan:dev:
   allow_failure: true
-  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/node:latest
+  image: ${DOCKER_IMG_PRE}node:latest
   tags:
     - docker
   stage: scan
@@ -161,7 +161,7 @@ sec:scan:dev:
       sast: gl-sast-report.json
 
 make:build:dev:
-  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/node:latest
+  image: ${DOCKER_IMG_PRE}node:latest
   tags:
     - docker
   stage: build
