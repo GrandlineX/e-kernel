@@ -49,7 +49,7 @@ lint:scan:prod:
 
 'sonar:scan:prod':
   allow_failure: true
-  image: sonarsource/sonar-scanner-cli
+  image: ${DOCKER_IMG_PRE}sonarsource/sonar-scanner-cli
   stage: scan
   tags:
     - docker
