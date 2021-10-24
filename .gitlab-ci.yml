@@ -11,7 +11,7 @@ cache:
 
 docs:
   allow_failure: true
-  image: ${DOCKER_IMG_PRE}/node:latest
+  image: ${DOCKER_IMG_PRE}node:latest
   tags:
     - docker
   stage: docs
