@@ -30,6 +30,21 @@ docs:
 
 # PROD BUIDL
 
+lint:scan:prod:
+  allow_failure: false
+  image: ${DOCKER_IMG_PRE}node:latest
+  tags:
+    - docker
+  stage: scan
+  only:
+    - tags
+    - /^v(\d+\.)?(\d+\.)?(\*|\d+)$/
+  except:
+    - branches
+  script:
+    - npm install
+    - npm run lint
+  needs: []
 
 'sonar:scan:dev':
   allow_failure: true
