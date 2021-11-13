@@ -31,33 +31,30 @@ docs:
 # PROD BUIDL
 
 
-lint:scan:prod:
-  allow_failure: false
-  image: ${DOCKER_IMG_PRE}node:latest
-  tags:
-    - docker
-  stage: scan
-  only:
-    - tags
-    - /^v(\d+\.)?(\d+\.)?(\*|\d+)$/
-  except:
-    - branches
-  script:
-    - npm install
-    - npm run lint
-  needs: []
-
-'sonar:scan:prod':
+'sonar:scan:dev':
   allow_failure: true
   image: ${DOCKER_IMG_PRE}sonarsource/sonar-scanner-cli
   stage: scan
   tags:
     - docker
   only:
-    - tags
-    - /^v(\d+\.)?(\d+\.)?(\*|\d+)$/
+    - dev
   script:
-    - sonar-scanner -Dsonar.login=$sonar_key -Dsonar.host.url=$sonar_url
+    - sonar-scanner -Dsonar.login=$sonar_key -Dsonar.host.url=$sonar_url -Dsonar.branch.name=dev
+
+'sonar:scan:master':
+  allow_failure: true
+  image: ${DOCKER_IMG_PRE}sonarsource/sonar-scanner-cli
+  stage: scan
+  tags:
+    - docker
+  only:
+    - master
+  script:
+    - sonar-scanner -Dsonar.login=$sonar_key -Dsonar.host.url=$sonar_url -Dsonar.branch.name=master
+
+
+
 
 
 sec:scan:prod:
@@ -96,7 +93,6 @@ make:build:prod:
   needs:
     - lint:scan:prod
     - sec:scan:prod
-    - sonar:scan:prod
   artifacts:
     paths:
       - dist
