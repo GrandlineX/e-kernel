@@ -30,7 +30,7 @@ export interface KeyType {
   iv: Buffer;
 }
 export type IBaseKernelModule<
-  T extends IDataBase<any> | null,
+  T extends IDataBase<any, any> | null,
   P extends BaseClient | null,
   C extends IBaseCache | null
 > = ICoreKernelModule<IKernel, T, P, C, null>;

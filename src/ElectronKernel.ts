@@ -1,10 +1,11 @@
 import CoreKernel, { ICoreCClient, sleep } from '@grandlinex/core';
 import { app, BrowserWindow, Tray } from 'electron';
 import * as Path from 'path';
+import ELogger from '@grandlinex/bundle-elogger';
 import { IKernel } from './lib';
 import ElectronKernelModule from './ElectronKernelModule';
-import initTray from './components/Tray';
-import createWindow from './components/MainWindow';
+import createWindow from './components/createWindow';
+import initTray from './components/initTray';
 
 /**
  *  @class ElectronKernel
@@ -39,7 +40,10 @@ export default class ElectronKernel
     preloadRoot?: string,
     pathOverride?: string
   ) {
-    super(appName, appCode, pathOverride);
+    super({ appName, appCode, pathOverride });
+    this.globalLogger = new ELogger(this);
+    this.setLogger(this.globalLogger);
+
     this.setBaseModule(new ElectronKernelModule(this));
     this.appRoot = appRoot || Path.join(__dirname, '..', 'res', 'index.html');
     this.preloadRoot =
@@ -47,31 +51,28 @@ export default class ElectronKernel
     this.tray = null;
     this.mainWindow = null;
     this.preloadWindow = null;
-    this.globalConfig.img.icon = Path.join(
-      __dirname,
-      '..',
-      'res',
-      'img',
-      'favicon.png'
+    const store = this.getConfigStore();
+    store.set(
+      'GLX_IMG_ICON',
+      Path.join(__dirname, '..', 'res', 'img', 'favicon.png')
     );
-    this.globalConfig.img.thump = Path.join(
-      __dirname,
-      '..',
-      'res',
-      'img',
-      'favicon.png'
+    store.set(
+      'GLX_IMG_THUMP',
+      Path.join(__dirname, '..', 'res', 'img', 'favicon.png')
     );
-    this.setTrigerFunction('pre', this.electronPre);
-    this.setTrigerFunction('start', this.electronStart);
+    this.setTriggerFunction('pre', this.electronPre);
+    this.setTriggerFunction('start', this.electronStart);
   }
 
   async setPreload(title: string): Promise<void> {
+    const store = this.getConfigStore();
+
     if (this.preloadWindow === null) {
       this.preloadWindow = new BrowserWindow({
         width: 600,
         height: 450,
         resizable: false,
-        icon: this.getGlobalConfig().img.icon,
+        icon: store.get('GLX_IMG_ICON'),
         frame: false,
       });
       this.preloadWindow.setTitle(this.getAppName());
@@ -97,7 +98,7 @@ export default class ElectronKernel
     initTray(this);
     const newUser = !this.getDb()?.configExist('hash');
     this.preloadWindow?.hide();
-    createWindow(this, newUser);
+    await createWindow(this, newUser);
   }
 
   getPreloadRoot(): string {
@@ -128,12 +129,12 @@ export default class ElectronKernel
     return this.tray;
   }
 
-  openNewWindow(): void {
-    createWindow(this, false);
+  async openNewWindow(): Promise<void> {
+    await createWindow(this, false);
   }
 
-  reload(): void {
+  async reload(): Promise<void> {
     this.closeAllWindows();
-    this.openNewWindow();
+    await this.openNewWindow();
   }
 }

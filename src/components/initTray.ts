@@ -1,12 +1,14 @@
 import { Menu, Tray } from 'electron';
 import { IKernel } from '../lib';
-import createWindow from './MainWindow';
+import createWindow from './createWindow';
 
 export default function initTray(kernel: IKernel) {
   if (kernel.getTray() !== null) {
     return;
   }
-  const tray = new Tray(kernel.getGlobalConfig().img.thump);
+  const path = kernel.getConfigStore().get('GLX_IMG_ICON');
+
+  const tray = new Tray(path as string);
   const contextMenu = Menu.buildFromTemplate([
     {
       label: 'Open',

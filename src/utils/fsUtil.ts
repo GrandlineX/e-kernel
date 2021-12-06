@@ -8,5 +8,9 @@ export async function getFile(event: any, ...args: any[]) {
 }
 
 export async function openConfigFolder(kernel: ICoreKernel<any>) {
-  return shell.openPath(kernel.getGlobalConfig().dir.root);
+  const path = kernel.getConfigStore().get('GLOBAL_PATH_HOME');
+  if (!path) {
+    throw kernel.lError('Cant open config folder');
+  }
+  return shell.openPath(path);
 }

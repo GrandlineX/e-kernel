@@ -1,38 +1,27 @@
-import { SQLightConnector } from '@grandlinex/core';
-import { IBaseKernelModule, KeyType } from '../lib';
+import SQLCon from '@grandlinex/bundle-sqlight';
+import { IBaseKernelModule } from '../lib';
+import GKey from './entity/GKey';
+import * as DBF from './DBFunctions';
 
-export default class KernelDB extends SQLightConnector {
+export default class KernelDB extends SQLCon {
   constructor(module: IBaseKernelModule<any, any, any>) {
-    super(module, '1');
+    super(module, DBF.KERNEL_DB_VERSION);
+    this.registerEntity(new GKey());
   }
 
-  async initNewDB(): Promise<any> {
-    await this.execScripts([
-      {
-        exec: 'CREATE TABLE main.keys(id INTEGER PRIMARY KEY , iv BLOB, auth BLOB);',
-        param: [],
-      },
-    ]);
+  deleteKey(id: number): Promise<void> {
+    return DBF.deleteKey(this, id);
   }
 
-  setKey(iv: Buffer, auth: Buffer): number {
-    const query = this.db?.prepare(
-      `REPLACE INTO main.keys (iv ,auth) VALUES (?,?);`
-    );
-    if (query === undefined) {
-      return -1;
-    }
-    const row = `${query.run([iv, auth]).lastInsertRowid}`;
-    return Number.parseInt(row, 10);
+  getKey(id: number): Promise<GKey | null> {
+    return DBF.getKey(this, id);
   }
 
-  getKey(id: number): KeyType {
-    const query = this.db?.prepare(`SELECT * FROM main.keys WHERE id=${id}`);
-    return query?.get();
+  initNewDB(): Promise<void> {
+    return DBF.initNewDB(this);
   }
 
-  deleteKey(id: number): void {
-    const query = this.db?.prepare(`DELETE FROM main.keys WHERE id=${id}`);
-    query?.run();
+  setKey(secret: string, iv: Buffer, auth: Buffer): Promise<number> {
+    return DBF.setKey(this, secret, iv, auth);
   }
 }

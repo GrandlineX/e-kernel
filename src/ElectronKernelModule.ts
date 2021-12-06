@@ -3,7 +3,6 @@ import { BaseKernelModule } from './classes';
 import { IKernel } from './lib';
 import * as A from './action';
 import KernelDB from './db/KernelDB';
-import Update001 from './db/update/Update001';
 
 export default class ElectronKernelModule extends BaseKernelModule<
   KernelDB,
@@ -32,9 +31,8 @@ export default class ElectronKernelModule extends BaseKernelModule<
 
   async initModule(): Promise<void> {
     const db = new KernelDB(this);
-    db.setUpdateChain(new Update001(db));
     this.setDb(db);
-    await this.getKernel().trigerFunction('load');
+    await this.getKernel().triggerFunction('load');
   }
 
   async startup(): Promise<void> {

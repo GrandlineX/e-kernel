@@ -15,10 +15,12 @@ export default class OpenExternalAction extends BaseAction {
     if (args.external) {
       shell.openExternal(args.url);
     } else {
+      const store = this.getKernel().getConfigStore();
+
       const mainWindow = new BrowserWindow({
         width: 1024,
         height: 600,
-        icon: this.getKernel().getGlobalConfig().img.icon,
+        icon: store.get('GLX_IMG_ICON'),
       });
       mainWindow.setMenu(null);
       mainWindow.loadURL(args.url);

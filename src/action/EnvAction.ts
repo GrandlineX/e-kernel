@@ -8,6 +8,9 @@ export default class EnvAction extends BaseAction {
   }
 
   async handler(event: Electron.IpcMainInvokeEvent, args: any) {
-    return this.getKernel().getGlobalConfig();
+    // TODO return this.getKernel().getGlobalConfig();
+    return {
+      config: 'any',
+    };
   }
 }

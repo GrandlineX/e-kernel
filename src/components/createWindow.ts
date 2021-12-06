@@ -3,7 +3,7 @@ import isDev from 'electron-is-dev';
 import { IKernel } from '../lib';
 
 export default async function createWindow(kernel: IKernel, newUser: boolean) {
-  const conf = kernel.getGlobalConfig();
+  const path = kernel.getConfigStore().get('GLX_IMG_ICON');
   const mainWindow = new BrowserWindow({
     width: 1024,
     height: 600,
@@ -13,7 +13,7 @@ export default async function createWindow(kernel: IKernel, newUser: boolean) {
       contextIsolation: false,
       additionalArguments: [isDev ? '1' : '0', app.getVersion()],
     },
-    icon: conf.img.icon,
+    icon: path,
   });
   mainWindow.setMenu(null);
 

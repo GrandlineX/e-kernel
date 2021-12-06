@@ -3,7 +3,7 @@ import { BaseClient } from 'classes';
 import { IBaseCache, IBaseKernelModule, IKernel } from '../lib';
 
 export default abstract class BaseKernelModule<
-    T extends IDataBase<any> | null,
+    T extends IDataBase<any, any> | null,
     P extends BaseClient | null,
     C extends IBaseCache | null
   >
