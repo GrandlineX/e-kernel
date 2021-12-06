@@ -1,6 +1,6 @@
 {
   "name": "@grandlinex/e-kernel",
-  "version": "0.16.0",
+  "version": "0.16.1",
   "description": "",
   "main": "dist/tests/run.js",
   "types": "dist/index.d.ts",
