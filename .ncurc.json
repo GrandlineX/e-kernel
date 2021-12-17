@@ -3,6 +3,7 @@
   "reject": [
     "eslint",
     "electron",
+    "@types/node",
     "@typescript-eslint/parser",
     "@typescript-eslint/eslint-plugin",
     "eslint-config-airbnb-typescript"
