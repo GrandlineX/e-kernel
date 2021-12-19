@@ -12,6 +12,11 @@ import {
 import { BaseClient } from 'classes';
 import { BrowserWindow, Tray } from 'electron';
 
+export enum ElectronGlobals {
+  'GLX_IMG_ICON' = 'GLX_IMG_ICON',
+  'GLX_IMG_THUMP' = 'GLX_IMG_THUMP',
+}
+
 export interface IKernel extends ICoreKernel<ICoreCClient> {
   closeAllWindows(): void;
   getPreloadRoot(): string;

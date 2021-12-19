@@ -1,15 +1,16 @@
 import { Menu, Tray } from 'electron';
-import { IKernel } from '../lib';
+import { ElectronGlobals, IKernel } from '../lib';
 import createWindow from './createWindow';
 
 export default function initTray(kernel: IKernel) {
   if (kernel.getTray() !== null) {
     return;
   }
-  const path = kernel.getConfigStore().get('GLX_IMG_ICON');
+  const path = kernel.getConfigStore().get(ElectronGlobals.GLX_IMG_THUMP);
 
   const tray = new Tray(path as string);
-  const contextMenu = Menu.buildFromTemplate([
+
+  const rows: Electron.MenuItemConstructorOptions[] = [
     {
       label: 'Open',
       type: 'normal',
@@ -18,29 +19,33 @@ export default function initTray(kernel: IKernel) {
         createWindow(kernel, false);
       },
     },
-    {
+  ];
+  if (kernel.getDevMode()) {
+    rows.push({
       label: 'Dev Mode',
       type: 'normal',
       click: (menuItem) => {
         kernel.getMainWindow()?.webContents.openDevTools();
       },
+    });
+  }
+  rows.push({
+    label: 'Lock',
+    type: 'normal',
+    click: (menuItem) => {
+      kernel.setCryptoClient(null);
+      kernel.closeAllWindows();
     },
-    {
-      label: 'Lock',
-      type: 'normal',
-      click: (menuItem) => {
-        kernel.setCryptoClient(null);
-        kernel.closeAllWindows();
-      },
+  });
+  rows.push({
+    label: 'Exit',
+    type: 'normal',
+    click: () => {
+      process.exit(0);
     },
-    {
-      label: 'Exit',
-      type: 'normal',
-      click: () => {
-        process.exit(0);
-      },
-    },
-  ]);
+  });
+
+  const contextMenu = Menu.buildFromTemplate(rows);
 
   tray.setToolTip(kernel.getAppName());
   tray.setContextMenu(contextMenu);

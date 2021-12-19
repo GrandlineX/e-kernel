@@ -1,9 +1,9 @@
 import { app, BrowserWindow } from 'electron';
 import isDev from 'electron-is-dev';
-import { IKernel } from '../lib';
+import { ElectronGlobals, IKernel } from '../lib';
 
 export default async function createWindow(kernel: IKernel, newUser: boolean) {
-  const path = kernel.getConfigStore().get('GLX_IMG_ICON');
+  const path = kernel.getConfigStore().get(ElectronGlobals.GLX_IMG_ICON);
   const mainWindow = new BrowserWindow({
     width: 1024,
     height: 600,

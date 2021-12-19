@@ -1,7 +1,7 @@
 {
   "name": "@grandlinex/e-kernel",
-  "version": "0.16.4",
-  "description": "",
+  "version": "0.16.5",
+  "description": "GrandLineX Electron Kernel",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

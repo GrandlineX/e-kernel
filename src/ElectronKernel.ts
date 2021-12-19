@@ -2,7 +2,7 @@ import CoreKernel, { ICoreCClient, sleep } from '@grandlinex/core';
 import { app, BrowserWindow, Tray } from 'electron';
 import * as Path from 'path';
 import ELogger from '@grandlinex/bundle-elogger';
-import { IKernel } from './lib';
+import { ElectronGlobals, IKernel } from './lib';
 import ElectronKernelModule from './ElectronKernelModule';
 import createWindow from './components/createWindow';
 import initTray from './components/initTray';
@@ -53,11 +53,11 @@ export default class ElectronKernel
     this.preloadWindow = null;
     const store = this.getConfigStore();
     store.set(
-      'GLX_IMG_ICON',
+      ElectronGlobals.GLX_IMG_ICON,
       Path.join(__dirname, '..', 'res', 'img', 'favicon.png')
     );
     store.set(
-      'GLX_IMG_THUMP',
+      ElectronGlobals.GLX_IMG_THUMP,
       Path.join(__dirname, '..', 'res', 'img', 'favicon.png')
     );
     this.setTriggerFunction('pre', this.electronPre);
@@ -72,7 +72,7 @@ export default class ElectronKernel
         width: 600,
         height: 450,
         resizable: false,
-        icon: store.get('GLX_IMG_ICON'),
+        icon: store.get(ElectronGlobals.GLX_IMG_ICON),
         frame: false,
       });
       this.preloadWindow.setTitle(this.getAppName());
