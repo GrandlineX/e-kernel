@@ -10,7 +10,7 @@ const testPath = Path.join(__dirname, '..','..', 'data', 'config');
 createFolderIfNotExist(testPathData);
 createFolderIfNotExist(testPath);
 
-const kernel = new ElectronKernel(appName,appCode,undefined,undefined,testPath);
+const kernel = new ElectronKernel( { appName, appCode, pathOverride: testPath });
 
 /*kernel.setDevMode(true)
 kernel.setTrigerFunction("pre",async (ik)=>{
