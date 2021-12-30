@@ -15,6 +15,8 @@ import { BrowserWindow, Tray } from 'electron';
 export enum ElectronGlobals {
   'GLX_IMG_ICON' = 'GLX_IMG_ICON',
   'GLX_IMG_THUMP' = 'GLX_IMG_THUMP',
+  'GLX_WINDOW_W' = 'GLX_WINDOW_W',
+  'GLX_WINDOW_H' = 'GLX_WINDOW_H',
 }
 
 export interface IKernel extends ICoreKernel<ICoreCClient> {

@@ -3,10 +3,13 @@ import isDev from 'electron-is-dev';
 import { ElectronGlobals, IKernel } from '../lib';
 
 export default async function createWindow(kernel: IKernel, newUser: boolean) {
-  const path = kernel.getConfigStore().get(ElectronGlobals.GLX_IMG_ICON);
+  const store = kernel.getConfigStore();
+  const path = store.get(ElectronGlobals.GLX_IMG_ICON);
+  const width = store.get(ElectronGlobals.GLX_WINDOW_W);
+  const height = store.get(ElectronGlobals.GLX_WINDOW_H);
   const mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 600,
+    width: width ? parseInt(width, 10) : 1024,
+    height: height ? parseInt(height, 10) : 600,
     backgroundColor: '#2e2c29',
     webPreferences: {
       nodeIntegration: true,

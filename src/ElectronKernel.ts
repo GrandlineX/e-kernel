@@ -27,20 +27,18 @@ export default class ElectronKernel
 
   /**
    * Default Constructor
-   * @param preloadRoot Path to preload html
-   * @param appRoot Path to app html
-   * @param appName App Name
-   * @param appCode App Code (Only lower case)
-   * @param pathOverride set base path for config folder
+   * @param config
    */
-  constructor(
-    appName: string,
-    appCode: string,
-    appRoot?: string,
-    preloadRoot?: string,
-    pathOverride?: string
-  ) {
-    super({ appName, appCode, pathOverride });
+  constructor(config: {
+    appName: string;
+    appCode: string;
+    appRoot?: string;
+    preloadRoot?: string;
+    pathOverride?: string;
+    envFilePath?: string;
+  }) {
+    super(config);
+    const { appRoot, preloadRoot } = config;
     this.globalLogger = new ELogger(this);
     this.setLogger(this.globalLogger);
 
