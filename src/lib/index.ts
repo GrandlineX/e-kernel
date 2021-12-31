@@ -17,6 +17,7 @@ export enum ElectronGlobals {
   'GLX_IMG_THUMP' = 'GLX_IMG_THUMP',
   'GLX_WINDOW_W' = 'GLX_WINDOW_W',
   'GLX_WINDOW_H' = 'GLX_WINDOW_H',
+  'GLX_WINDOW_FRAME' = 'GLX_WINDOW_FRAME',
 }
 
 export interface IKernel extends ICoreKernel<ICoreCClient> {
