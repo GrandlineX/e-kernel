@@ -12,7 +12,7 @@ export default async function createWindow(kernel: IKernel, newUser: boolean) {
     width: width ? parseInt(width, 10) : 1024,
     height: height ? parseInt(height, 10) : 600,
     backgroundColor: '#2e2c29',
-    frame: frame !== 'true',
+    frame: frame !== 'false',
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
