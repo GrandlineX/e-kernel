@@ -1,6 +1,6 @@
 {
   "name": "@grandlinex/e-kernel",
-  "version": "0.17.1",
+  "version": "0.17.2",
   "description": "GrandLineX Electron Kernel",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,8 +25,8 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "@grandlinex/core": "^0.17.2",
-    "@grandlinex/bundle-sqlight": "^0.17.0",
-    "@grandlinex/bundle-elogger": "^0.17.0",
+    "@grandlinex/bundle-sqlight": "^0.17.1",
+    "@grandlinex/bundle-elogger": "^0.17.1",
     "axios": "^0.24.0",
     "body-parser": "^1.19.1",
     "electron": "^16.0.4",
