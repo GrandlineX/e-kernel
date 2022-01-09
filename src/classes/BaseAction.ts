@@ -9,7 +9,7 @@ export default abstract class BaseAction
   abstract handler(event: IpcMainInvokeEvent, args: any): any;
   register(): void {
     this.log('register');
-    ipcMain.handle(this.chanel, this.handler);
+    ipcMain.handle(this.getName(), this.handler);
   }
 
   getEKernel(): IKernel {
