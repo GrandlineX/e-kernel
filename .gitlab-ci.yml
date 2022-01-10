@@ -10,5 +10,6 @@ include:
  - project: 'grandlinex/templates'
    file: '/update/update-glx.yml'
  - project: 'grandlinex/templates'
+   file: '/trigger/public-electron.yml'
+ - project: 'grandlinex/templates'
    file: '/trigger/electron-skeleton.yml'
- 
