@@ -1,8 +1,8 @@
 {
   "name": "@grandlinex/e-kernel",
-  "version": "0.21.0",
+  "version": "0.22.0-alpha.0",
   "description": "GrandLineX Electron Kernel",
-  "main": "dist/index.js",
+  "main": "dist/tests/run.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "buildprep": "tsc",
@@ -24,15 +24,12 @@
   },
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@grandlinex/core": "^0.21.0",
-    "@grandlinex/bundle-sqlight": "^0.21.0",
-    "@grandlinex/bundle-elogger": "^0.21.0",
-    "axios": "^0.24.0",
-    "body-parser": "^1.19.1",
-    "electron": "^16.0.4",
+    "@grandlinex/bundle-elogger": "^0.22.0-alpha.0",
+    "@grandlinex/bundle-sqlight": "^0.22.0-alpha.2",
+    "@grandlinex/core": "^0.22.0-alpha.5",
     "dotenv": "^10.0.0",
+    "electron": "^16.0.4",
     "electron-devtools-installer": "^3.2.0",
-    "electron-is-dev": "^2.0.0",
     "electron-rebuild": "^3.2.5",
     "node-abi": "^3.5.0"
   },

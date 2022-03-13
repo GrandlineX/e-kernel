@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron';
-import isDev from 'electron-is-dev';
 import { ElectronGlobals, IKernel } from '../lib';
+import isDev from '../utils/isDev';
 
 export default async function createWindow(kernel: IKernel, newUser: boolean) {
   const store = kernel.getConfigStore();
@@ -16,7 +16,7 @@ export default async function createWindow(kernel: IKernel, newUser: boolean) {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      additionalArguments: [isDev ? '1' : '0', app.getVersion()],
+      additionalArguments: [isDev() ? '1' : '0', app.getVersion()],
     },
     icon: path,
   });

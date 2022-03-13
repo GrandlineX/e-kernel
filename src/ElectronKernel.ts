@@ -1,7 +1,9 @@
-import CoreKernel, { ICoreCClient, sleep } from '@grandlinex/core';
+import CoreKernel, { CoreModule, ICoreCClient, sleep } from '@grandlinex/core';
 import { app, BrowserWindow, Tray } from 'electron';
 import * as Path from 'path';
 import ELogger from '@grandlinex/bundle-elogger';
+import SQLCon from '@grandlinex/bundle-sqlight';
+import { CORE_DB_VERSION } from '@grandlinex/core/dist/database/CoreDb';
 import { ElectronGlobals, IKernel } from './lib';
 import ElectronKernelModule from './ElectronKernelModule';
 import createWindow from './components/createWindow';
@@ -15,9 +17,9 @@ export default class ElectronKernel
   extends CoreKernel<ICoreCClient>
   implements IKernel
 {
-  private appRoot: string;
+  private readonly appRoot: string;
 
-  private preloadRoot: string;
+  private readonly preloadRoot: string;
 
   private tray: Tray | null;
 
@@ -37,12 +39,13 @@ export default class ElectronKernel
     pathOverride?: string;
     envFilePath?: string;
   }) {
-    super(config);
+    super({ ...config, logger: (kernel) => new ELogger(kernel) });
     const { appRoot, preloadRoot } = config;
-    this.globalLogger = new ELogger(this);
-    this.setLogger(this.globalLogger);
 
-    this.setBaseModule(new ElectronKernelModule(this));
+    this.setBaseModule(
+      new CoreModule(this, (mod) => new SQLCon(mod, CORE_DB_VERSION))
+    );
+    this.addModule(new ElectronKernelModule(this));
     this.appRoot = appRoot || Path.join(__dirname, '..', 'res', 'index.html');
     this.preloadRoot =
       preloadRoot || Path.join(__dirname, '..', 'res', 'preload.html');
