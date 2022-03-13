@@ -1,10 +1,12 @@
 include:
  - project: 'grandlinex/templates'
-   file: '/stages.yml'   
+   file: '/stages.yml'
  - project: 'grandlinex/templates'
    file: '/prod/electron-bundle.yml'
  - project: 'grandlinex/templates'
    file: '/build/electron-bundle.yml'
+ - project: 'grandlinex/templates'
+   file: '/sonar/electron-sonar.yml'
  - project: 'grandlinex/templates'
    file: '/deploy/npm-deploy.yml'
  - project: 'grandlinex/templates'
