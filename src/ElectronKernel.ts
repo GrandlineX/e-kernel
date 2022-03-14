@@ -1,9 +1,11 @@
-import CoreKernel, { CoreModule, ICoreCClient, sleep } from '@grandlinex/core';
+import CoreKernel, {
+  CoreLogger,
+  ICoreCClient,
+  ICoreKernel,
+  sleep,
+} from '@grandlinex/core';
 import { app, BrowserWindow, Tray } from 'electron';
 import * as Path from 'path';
-import ELogger from '@grandlinex/bundle-elogger';
-import SQLCon from '@grandlinex/bundle-sqlight';
-import { CORE_DB_VERSION } from '@grandlinex/core/dist/database/CoreDb';
 import { ElectronGlobals, IKernel } from './lib';
 import ElectronKernelModule from './ElectronKernelModule';
 import createWindow from './components/createWindow';
@@ -38,14 +40,12 @@ export default class ElectronKernel
     preloadRoot?: string;
     pathOverride?: string;
     envFilePath?: string;
+    logger?: (kernel: CoreKernel<any>) => CoreLogger;
   }) {
-    super({ ...config, logger: (kernel) => new ELogger(kernel) });
+    super({ ...config });
     const { appRoot, preloadRoot } = config;
 
-    this.setBaseModule(
-      new CoreModule(this, (mod) => new SQLCon(mod, CORE_DB_VERSION))
-    );
-    this.addModule(new ElectronKernelModule(this));
+    this.setBaseModule(new ElectronKernelModule(this));
     this.appRoot = appRoot || Path.join(__dirname, '..', 'res', 'index.html');
     this.preloadRoot =
       preloadRoot || Path.join(__dirname, '..', 'res', 'preload.html');
@@ -61,6 +61,8 @@ export default class ElectronKernel
       ElectronGlobals.GLX_IMG_THUMP,
       Path.join(__dirname, '..', 'res', 'img', 'favicon.png')
     );
+    this.electronPre = this.electronPre.bind(this);
+    this.electronStart = this.electronStart.bind(this);
     this.setTriggerFunction('pre', this.electronPre);
     this.setTriggerFunction('start', this.electronStart);
   }
@@ -84,22 +86,23 @@ export default class ElectronKernel
     });
   }
 
-  async electronPre(ik: this): Promise<void> {
+  async electronPre(ik: ICoreKernel<any>): Promise<unknown> {
     this.debug('preload');
     return new Promise((resolve) => {
       app.on('ready', async () => {
         await this.setPreload('Starting');
-        resolve();
+        resolve(undefined);
       });
     });
   }
 
-  async electronStart(ik: this): Promise<void> {
+  async electronStart(ik: ICoreKernel<any>): Promise<unknown> {
     await sleep(2000);
     initTray(this);
     const newUser = !this.getDb()?.configExist('hash');
     this.preloadWindow?.hide();
     await createWindow(this, newUser);
+    return undefined;
   }
 
   getPreloadRoot(): string {
