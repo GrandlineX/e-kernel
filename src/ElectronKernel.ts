@@ -6,10 +6,11 @@ import CoreKernel, {
 } from '@grandlinex/core';
 import { app, BrowserWindow, Tray } from 'electron';
 import * as Path from 'path';
-import { ElectronGlobals, IKernel } from './lib';
+import { ElectronGlobals, IKernel, KernelWindowName } from './lib';
 import ElectronKernelModule from './ElectronKernelModule';
 import createWindow from './components/createWindow';
 import initTray from './components/initTray';
+import WindowManager from './classes/WindowManager';
 
 /**
  *  @class ElectronKernel
@@ -25,9 +26,7 @@ export default class ElectronKernel
 
   private tray: Tray | null;
 
-  private preloadWindow: BrowserWindow | null;
-
-  private mainWindow: BrowserWindow | null;
+  private readonly windowManager: WindowManager;
 
   /**
    * Default Constructor
@@ -50,8 +49,7 @@ export default class ElectronKernel
     this.preloadRoot =
       preloadRoot || Path.join(__dirname, '..', 'res', 'preload.html');
     this.tray = null;
-    this.mainWindow = null;
-    this.preloadWindow = null;
+    this.windowManager = new WindowManager(this);
     const store = this.getConfigStore();
     store.set(
       ElectronGlobals.GLX_IMG_ICON,
@@ -68,20 +66,23 @@ export default class ElectronKernel
   }
 
   async setPreload(title: string): Promise<void> {
-    const store = this.getConfigStore();
+    let win = this.windowManager.get(KernelWindowName.PRELOAD);
 
-    if (this.preloadWindow === null) {
-      this.preloadWindow = new BrowserWindow({
-        width: 600,
-        height: 450,
-        resizable: false,
-        icon: store.get(ElectronGlobals.GLX_IMG_ICON),
-        frame: false,
+    if (!win) {
+      win = this.windowManager.create(KernelWindowName.PRELOAD, (conf) => {
+        const preWin = new BrowserWindow({
+          width: 600,
+          height: 450,
+          resizable: false,
+          icon: conf.icon,
+          frame: false,
+        });
+        preWin.setTitle(this.getAppName());
+        return preWin;
       });
-      this.preloadWindow.setTitle(this.getAppName());
     }
     const version = app.getVersion();
-    await this.preloadWindow.loadFile(this.preloadRoot, {
+    await win.loadFile(this.preloadRoot, {
       search: `${version}& ${title}`,
     });
   }
@@ -100,7 +101,7 @@ export default class ElectronKernel
     await sleep(2000);
     initTray(this);
     const newUser = !this.getDb()?.configExist('hash');
-    this.preloadWindow?.hide();
+    this.windowManager?.hide(KernelWindowName.PRELOAD);
     await createWindow(this, newUser);
     return undefined;
   }
@@ -114,15 +115,15 @@ export default class ElectronKernel
   }
 
   closeAllWindows() {
-    this.mainWindow?.destroy();
-  }
-
-  setMainWindow(window: BrowserWindow | null) {
-    this.mainWindow = window;
+    this.windowManager.closeAll();
   }
 
   getMainWindow(): BrowserWindow | null {
-    return this.mainWindow;
+    return this.windowManager.get(KernelWindowName.MAIN) || null;
+  }
+
+  getWindowManager(): WindowManager {
+    return this.windowManager;
   }
 
   setTray(tray: Tray | null) {

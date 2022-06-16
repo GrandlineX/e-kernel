@@ -10,20 +10,25 @@ export default class OpenExternalAction extends BaseAction {
 
   handler(
     event: Electron.IpcMainInvokeEvent,
-    args: { url: string; external: boolean }
+    args: { url: string; external: boolean; title?: string }
   ): any {
-    if (args.external) {
-      shell.openExternal(args.url);
+    const { url, external, title } = args;
+    if (external) {
+      shell.openExternal(url);
     } else {
-      const store = this.getKernel().getConfigStore();
-
-      const mainWindow = new BrowserWindow({
-        width: 1024,
-        height: 600,
-        icon: store.get('GLX_IMG_ICON'),
+      const wm = this.getEKernel().getWindowManager();
+      const mainWindow = wm.create(url, (c) => {
+        return new BrowserWindow({
+          width: c.width,
+          height: c.height,
+          icon: c.icon,
+        });
       });
       mainWindow.setMenu(null);
       mainWindow.loadURL(args.url);
+      if (title) {
+        mainWindow.setTitle(title);
+      }
     }
     return true;
   }

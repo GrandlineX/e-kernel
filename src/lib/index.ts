@@ -10,7 +10,12 @@ import {
   IDataBase,
 } from '@grandlinex/core';
 import { BaseClient } from 'classes';
-import { BrowserWindow, Tray } from 'electron';
+import { BrowserWindow, Tray, BrowserWindowConstructorOptions } from 'electron';
+
+export enum KernelWindowName {
+  'PRELOAD' = 'PRELOAD',
+  'MAIN' = 'MAIN',
+}
 
 export enum ElectronGlobals {
   'GLX_IMG_ICON' = 'GLX_IMG_ICON',
@@ -20,12 +25,25 @@ export enum ElectronGlobals {
   'GLX_WINDOW_FRAME' = 'GLX_WINDOW_FRAME',
 }
 
+export interface IWindow {
+  create(
+    key: string,
+    fc: (prop: BrowserWindowConstructorOptions) => BrowserWindow
+  ): BrowserWindow;
+  get(window: string): BrowserWindow | undefined;
+  has(window: string): boolean;
+  hide(window: string): void;
+  show(window: string): boolean;
+  close(window: string): boolean;
+  closeAll(): void;
+}
+
 export interface IKernel extends ICoreKernel<ICoreCClient> {
   closeAllWindows(): void;
   getPreloadRoot(): string;
   getAppRoot(): string;
-  setMainWindow(window: BrowserWindow | null): void;
   getMainWindow(): BrowserWindow | null;
+  getWindowManager(): IWindow;
   setTray(tray: Tray | null): void;
   getTray(): Tray | null;
   openNewWindow(): void;

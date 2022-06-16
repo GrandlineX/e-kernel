@@ -7,9 +7,11 @@ import {
   CoreService as BaseService,
 } from '@grandlinex/core';
 import BaseAction from './BaseAction';
+import WindowManager from './WindowManager';
 import BaseKernelModule from './BaseKernelModule';
 
 export {
+  WindowManager,
   BaseLoopService,
   BaseKernelModule,
   BaseService,
