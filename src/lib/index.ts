@@ -3,14 +3,14 @@ import {
   ICoreBridge,
   ICoreCache,
   ICoreCClient,
+  ICoreClient,
   ICoreElement,
   ICoreKernel,
   ICoreKernelModule,
   ICoreService,
   IDataBase,
 } from '@grandlinex/core';
-import { BaseClient } from 'classes';
-import { BrowserWindow, Tray, BrowserWindowConstructorOptions } from 'electron';
+import { BrowserWindow, BrowserWindowConstructorOptions, Tray } from 'electron';
 
 export enum KernelWindowName {
   'PRELOAD' = 'PRELOAD',
@@ -57,13 +57,39 @@ export interface KeyType {
 }
 export type IBaseKernelModule<
   T extends IDataBase<any, any> | null,
-  P extends BaseClient | null,
+  P extends IBaseClient | null,
   C extends IBaseCache | null
 > = ICoreKernelModule<IKernel, T, P, C, null>;
 
-export type IBaseAction = ICoreAction;
+export type IBaseAction<
+  K extends IKernel = IKernel,
+  T extends IDataBase<any, any> | null = any,
+  P extends IBaseClient | null = any,
+  C extends IBaseCache | null = any
+> = ICoreAction<K, T, P, C>;
 
-export type IBaseService = ICoreService;
+export type IBaseService<
+  K extends IKernel = IKernel,
+  T extends IDataBase<any, any> | null = any,
+  P extends IBaseClient | null = any,
+  C extends IBaseCache | null = any
+> = ICoreService<K, T, P, C>;
+export type IBaseClient<
+  K extends IKernel = IKernel,
+  T extends IDataBase<any, any> | null = any,
+  P extends IBaseClient | null = any,
+  C extends IBaseCache | null = any
+> = ICoreClient;
 export type IBaseBrige = ICoreBridge;
-export type IBaseCache = ICoreCache;
-export type IBaseElement = ICoreElement;
+export type IBaseCache<
+  K extends IKernel = IKernel,
+  T extends IDataBase<any, any> | null = any,
+  P extends IBaseClient | null = any,
+  C extends IBaseCache | null = any
+> = ICoreCache<K, T, P, C>;
+export type IBaseElement<
+  K extends IKernel = IKernel,
+  T extends IDataBase<any, any> | null = any,
+  P extends IBaseClient | null = any,
+  C extends IBaseCache | null = any
+> = ICoreElement<K, T, P, C>;
