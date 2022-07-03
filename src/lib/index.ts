@@ -10,7 +10,7 @@ import {
   ICoreService,
   IDataBase,
 } from '@grandlinex/core';
-import { BrowserWindow, Tray, BrowserWindowConstructorOptions } from 'electron';
+import { BrowserWindow, BrowserWindowConstructorOptions, Tray } from 'electron';
 
 export enum KernelWindowName {
   'PRELOAD' = 'PRELOAD',

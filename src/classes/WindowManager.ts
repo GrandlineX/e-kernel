@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import { ElectronGlobals, IKernel, IWindow } from '../lib';
-import BrowserWindowConstructorOptions = Electron.BrowserWindowConstructorOptions;
 import isDev from '../utils/isDev';
+import BrowserWindowConstructorOptions = Electron.BrowserWindowConstructorOptions;
 
 export default class WindowManager implements IWindow {
   private kernel: IKernel;
