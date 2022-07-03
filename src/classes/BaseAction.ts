@@ -1,10 +1,15 @@
-import { CoreAction } from '@grandlinex/core';
+import { CoreAction, ICoreClient, IDataBase } from '@grandlinex/core';
 import { ipcMain, IpcMainInvokeEvent } from 'electron';
-import { IBaseAction, IKernel } from '../lib';
+import { IBaseAction, IBaseCache, IKernel } from '../lib';
 
-export default abstract class BaseAction
-  extends CoreAction
-  implements IBaseAction
+export default abstract class BaseAction<
+    K extends IKernel = IKernel,
+    T extends IDataBase<any, any> | null = any,
+    P extends ICoreClient | null = any,
+    C extends IBaseCache | null = any
+  >
+  extends CoreAction<K, T, P, C>
+  implements IBaseAction<K, T, P, C>
 {
   abstract handler(event: IpcMainInvokeEvent, args: any): any;
   register(): void {
