@@ -2,7 +2,7 @@ import CoreKernel, {
   CoreLogger,
   ICoreCClient,
   ICoreKernel,
-  sleep,
+  XUtil,
 } from '@grandlinex/core';
 import { app, BrowserWindow, Tray } from 'electron';
 import * as Path from 'path';
@@ -98,7 +98,7 @@ export default class ElectronKernel
   }
 
   async electronStart(ik: ICoreKernel<any>): Promise<unknown> {
-    await sleep(2000);
+    await XUtil.sleep(2000);
     initTray(this);
     const newUser = !this.getDb()?.configExist('hash');
     this.windowManager?.hide(KernelWindowName.PRELOAD);

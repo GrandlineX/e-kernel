@@ -1,14 +1,10 @@
-import * as Path from 'path';
-import { createFolderIfNotExist } from '@grandlinex/core';
 import ElectronKernel from '../ElectronKernel';
+import { XUtil } from '@grandlinex/core';
 
 const appName = 'TestKernel';
 const appCode = 'tkernel';
-const testPathData = Path.join(__dirname, '..','..', 'data');
-const testPath = Path.join(__dirname, '..','..', 'data', 'config');
 
-createFolderIfNotExist(testPathData);
-createFolderIfNotExist(testPath);
+const [testPath] =XUtil.setupEnvironment([__dirname,'..','..'],['data','config'])
 
 const kernel = new ElectronKernel( { appName, appCode, pathOverride: testPath });
 
