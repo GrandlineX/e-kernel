@@ -29,14 +29,7 @@ export default function initTray(kernel: IKernel) {
       },
     });
   }
-  rows.push({
-    label: 'Lock',
-    type: 'normal',
-    click: (menuItem) => {
-      kernel.setCryptoClient(null);
-      kernel.closeAllWindows();
-    },
-  });
+
   rows.push({
     label: 'Exit',
     type: 'normal',
