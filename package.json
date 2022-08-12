@@ -1,8 +1,8 @@
 {
   "name": "@grandlinex/e-kernel",
-  "version": "0.25.2",
+  "version": "0.25.3",
   "description": "GrandLineX Electron Kernel",
-  "main": "dist/tests/run.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "buildprep": "tsc",
