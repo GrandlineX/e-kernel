@@ -1,6 +1,6 @@
 {
   "name": "@grandlinex/e-kernel",
-  "version": "0.26.0",
+  "version": "0.26.1",
   "description": "GrandLineX Electron Kernel",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,7 +25,6 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "@grandlinex/core": "0.26.0",
-    "@grandlinex/bundle-sqlight": "0.26.0",
     "dotenv": "16.0.3",
     "electron": "21.3.0",
     "electron-rebuild": "3.2.9",
