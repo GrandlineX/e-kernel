@@ -1,12 +1,7 @@
 {
   "upgrade": true,
   "reject": [
-    "eslint",
     "electron",
-    "@types/node",
-    "@typescript-eslint/parser",
-    "@typescript-eslint/eslint-plugin",
-    "eslint-plugin-react",
-    "eslint-config-airbnb-typescript"
+    "@types/node"
   ]
 }
