@@ -24,7 +24,7 @@
   },
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@grandlinex/core": "0.27.0",
+    "@grandlinex/core": "0.28.0",
     "dotenv": "16.0.3",
     "electron": "21.3.0",
     "electron-rebuild": "3.2.9",
