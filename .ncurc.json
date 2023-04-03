@@ -1,7 +1,6 @@
 {
   "upgrade": true,
   "reject": [
-    "electron",
-    "@types/node"
+    "electron"
   ]
 }
