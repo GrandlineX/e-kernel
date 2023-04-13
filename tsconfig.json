@@ -2,7 +2,7 @@
   "compilerOptions": {
     "jsx": "react",
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
-     "baseUrl": "./src",
+    "baseUrl": "./src",
     "declaration": true,
     /* Basic Options */
     // "incremental": true,                         /* Enable incremental compilation */
