@@ -9,6 +9,7 @@ import {
 import BaseAction from './BaseAction';
 import WindowManager from './WindowManager';
 import BaseKernelModule from './BaseKernelModule';
+import { GLXElectronAPI } from './preload';
 
 export {
   WindowManager,
@@ -20,4 +21,5 @@ export {
   BaseAction,
   BaseClient,
   BaseBridge,
+  GLXElectronAPI,
 };
