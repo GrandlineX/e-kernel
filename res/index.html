@@ -39,6 +39,20 @@
           padding-top: 30px;
           padding-bottom: 8px;
       }
+      .button{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+      }
+      .button button{
+          padding: 4px;
+          font-size: 18px;
+          text-decoration: underline;
+          border: none;
+          background: none;
+          cursor: pointer;
+          color: #ffffff;
+      }
 
 
   </style>
@@ -54,6 +68,17 @@
 
   </h4>
 </div>
+<div class='button'>
+  <button id='alert' type='button' >Test Alert</button>
+</div>
 <div class='version'>@GrandLineX </div>
+
+
+<script>
+  const btn = document.getElementById('alert');
+  btn.onclick=()=>{
+    window.glxApi.invoke('alert',{title:'Test Notification' ,body:'Test Message'});
+  }
+</script>
  </body>
 </html>

@@ -23,6 +23,7 @@ export enum ElectronGlobals {
   'GLX_WINDOW_W' = 'GLX_WINDOW_W',
   'GLX_WINDOW_H' = 'GLX_WINDOW_H',
   'GLX_WINDOW_FRAME' = 'GLX_WINDOW_FRAME',
+  'GLX_PRELOAD_JS' = 'GLX_PRELOAD_JS',
 }
 
 export interface IWindow {
