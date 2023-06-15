@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import * as Path from 'path';
+import { CMap } from '@grandlinex/core';
 import { ElectronGlobals, IKernel, IWindow, KernelWindowName } from '../lib';
 import isDev from '../utils/isDev';
 import BrowserWindowConstructorOptions = Electron.BrowserWindowConstructorOptions;
@@ -7,11 +8,11 @@ import BrowserWindowConstructorOptions = Electron.BrowserWindowConstructorOption
 export default class WindowManager implements IWindow {
   private kernel: IKernel;
 
-  private winMap: Map<string, BrowserWindow>;
+  private winMap: CMap<string, BrowserWindow>;
 
   constructor(kernel: IKernel) {
     this.kernel = kernel;
-    this.winMap = new Map<string, BrowserWindow>();
+    this.winMap = new CMap<string, BrowserWindow>();
   }
 
   create(
@@ -83,14 +84,10 @@ export default class WindowManager implements IWindow {
   }
 
   closeAll() {
-    const it = this.winMap.keys();
-    let next: string | undefined | null;
-    next = it.next()?.value;
-    while (next) {
-      if (next !== KernelWindowName.PRELOAD) {
-        this.close(next);
-        next = it.next()?.value;
+    this.winMap.forEach((el, key) => {
+      if (key !== KernelWindowName.PRELOAD) {
+        this.close(key);
       }
-    }
+    });
   }
 }
