@@ -1,6 +1,6 @@
 import { BrowserWindow, shell } from 'electron';
-import BaseAction from '../classes/BaseAction';
-import { IBaseKernelModule } from '../lib';
+import BaseAction from '../../classes/BaseAction';
+import { IBaseKernelModule } from '../../lib';
 
 export default class OpenExternalAction extends BaseAction {
   constructor(module: IBaseKernelModule<any, any, any>) {

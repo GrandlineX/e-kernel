@@ -16,9 +16,13 @@ export default class ElectronKernelModule extends BaseKernelModule<
       new A.ConfigOpenAction(this),
       new A.ConfigSetAction(this),
       new A.DevModeAction(this),
-      new A.EnvAction(this),
+      new A.ConfigGetAction(this),
       new A.OpenExternalAction(this),
-      new A.ReloadAction(this)
+      new A.ReloadAction(this),
+      new A.CloseWindowAction(this),
+      new A.MainWindowAction(this),
+      new A.MaximizeAction(this),
+      new A.MinimizeAction(this)
     );
 
     this.addService(new OfflineService(this));

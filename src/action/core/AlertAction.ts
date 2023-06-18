@@ -1,6 +1,6 @@
-import { IBaseKernelModule } from '../lib';
-import { BaseAction } from '../classes';
-import showNotification from '../utils/showNotification';
+import { BaseAction } from '../../classes';
+import { IBaseKernelModule } from '../../lib';
+import showNotification from '../../utils/showNotification';
 
 export default class AlertAction extends BaseAction {
   constructor(module: IBaseKernelModule<any, any, any>) {

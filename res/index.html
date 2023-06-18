@@ -70,6 +70,7 @@
 </div>
 <div class='button'>
   <button id='alert' type='button' >Test Alert</button>
+  <button id='dev' type='button' >Dev Mode</button>
 </div>
 <div class='version'>@GrandLineX </div>
 
@@ -77,7 +78,11 @@
 <script>
   const btn = document.getElementById('alert');
   btn.onclick=()=>{
-    window.glxApi.invoke('alert',{title:'Test Notification' ,body:'Test Message'});
+    window.glxApi.coreFunctions.alert({title:'Test Notification' ,body:'Test Message'});
+  }
+  const btn2 = document.getElementById('dev');
+  btn2.onclick=()=>{
+    window.glxApi.windowFunctions.devMode();
   }
 </script>
  </body>

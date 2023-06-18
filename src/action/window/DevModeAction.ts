@@ -1,5 +1,5 @@
-import BaseAction from '../classes/BaseAction';
-import { IBaseKernelModule } from '../lib';
+import BaseAction from '../../classes/BaseAction';
+import { IBaseKernelModule } from '../../lib';
 
 export default class DevModeAction extends BaseAction {
   constructor(module: IBaseKernelModule<any, any, any>) {

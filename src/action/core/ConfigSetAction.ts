@@ -1,5 +1,5 @@
-import { BaseAction } from '../classes';
-import { IBaseKernelModule } from '../lib';
+import { BaseAction } from '../../classes';
+import { IBaseKernelModule } from '../../lib';
 
 export default class ConfigSetAction extends BaseAction {
   constructor(module: IBaseKernelModule<any, any, any>) {
