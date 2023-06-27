@@ -1,6 +1,6 @@
 {
   "name": "@grandlinex/e-kernel",
-  "version": "0.30.6",
+  "version": "0.30.7",
   "description": "GrandLineX Electron Kernel",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -24,11 +24,11 @@
   },
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@electron/rebuild": "3.2.10",
+    "@electron/rebuild": "3.2.13",
     "@grandlinex/core": "0.30.1",
-    "dotenv": "16.0.3",
+    "dotenv": "16.3.1",
     "electron": "23.2.1",
-    "node-abi": "3.33.0"
+    "node-abi": "3.45.0"
   },
   "config": {
     "forge": {
@@ -43,26 +43,26 @@
     }
   },
   "devDependencies": {
-    "@electron-forge/cli": "6.1.0",
-    "@types/node": "18.15.11",
-    "@typescript-eslint/eslint-plugin": "^5.57.1",
-    "@typescript-eslint/parser": "^5.57.1",
+    "@electron-forge/cli": "6.2.1",
+    "@types/node": "20.3.2",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
     "cross-env": "^7.0.3",
     "electron": "23.2.1",
     "electron-devtools-installer": "^3.2.0",
-    "eslint": "^8.37.0",
+    "eslint": "^8.43.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-prettier": "^4.2.1",
-    "html-webpack-plugin": "^5.5.0",
-    "prettier": "^2.8.7",
-    "ts-loader": "^9.4.2",
+    "html-webpack-plugin": "^5.5.3",
+    "prettier": "^2.8.8",
+    "ts-loader": "^9.4.3",
     "ts-node": "^10.9.1",
-    "typedoc": "^0.23.28",
-    "typescript": "^5.0.3"
+    "typedoc": "^0.24.8",
+    "typescript": "^5.1.3"
   },
   "repository": {
     "type": "git",

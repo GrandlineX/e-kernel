@@ -75,6 +75,9 @@ export default class WindowManager implements IWindow {
     const win = this.get(window);
     if (win) {
       this.winMap.delete(window);
+      if (win.isDestroyed()) {
+        return true;
+      }
       if (win.isClosable()) {
         win.close();
         return true;
