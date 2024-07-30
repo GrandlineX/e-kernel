@@ -17,7 +17,7 @@ export default class WindowManager implements IWindow {
 
   create(
     key: string,
-    fc: (prop: BrowserWindowConstructorOptions) => BrowserWindow
+    fc: (prop: BrowserWindowConstructorOptions) => BrowserWindow,
   ) {
     this.close(key);
     const store = this.kernel.getConfigStore();

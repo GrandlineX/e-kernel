@@ -6,7 +6,7 @@ export default abstract class BaseAction<
     K extends IKernel = IKernel,
     T extends IDataBase<any, any> | null = any,
     P extends ICoreClient | null = any,
-    C extends IBaseCache | null = any
+    C extends IBaseCache | null = any,
   >
   extends CoreAction<K, T, P, C>
   implements IBaseAction<K, T, P, C>

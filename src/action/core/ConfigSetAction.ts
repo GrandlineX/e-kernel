@@ -9,7 +9,7 @@ export default class ConfigSetAction extends BaseAction {
 
   handler(
     event: Electron.IpcMainInvokeEvent,
-    args: { key: string; value: string }
+    args: { key: string; value: string },
   ): any {
     this.getModule().getDb()?.setConfig(args.key, args.value);
     return true;

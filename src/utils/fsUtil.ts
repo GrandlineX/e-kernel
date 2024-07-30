@@ -1,7 +1,7 @@
 import { dialog, shell } from 'electron';
 import { ICoreKernel, StoreGlobal } from '@grandlinex/core';
 
-export async function getFile(event: any, ...args: any[]) {
+export async function getFile() {
   return dialog.showOpenDialog({
     properties: ['openFile', 'multiSelections'],
   });

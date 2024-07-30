@@ -30,15 +30,15 @@ export type GLXElectronAPI = {
   sendSync<Y = any, X = any>(channel: string, ...args: X[]): Y;
   on<E = Event, X = any>(
     channel: string,
-    listener: (event: E, ...args: X[]) => void
+    listener: (event: E, ...args: X[]) => void,
   ): void;
   once<E = Event, X = any>(
     channel: string,
-    listener: (event: E, ...args: X[]) => void
+    listener: (event: E, ...args: X[]) => void,
   ): void;
   removeListener<X = any>(
     channel: string,
-    listener: (...args: X[]) => void
+    listener: (...args: X[]) => void,
   ): void;
   removeAllListener(channel: string): void;
   windowFunctions: IWindowFunctions;

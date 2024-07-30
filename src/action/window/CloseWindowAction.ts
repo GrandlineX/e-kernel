@@ -7,10 +7,7 @@ export default class CloseWindowAction extends BaseAction {
     this.handler = this.handler.bind(this);
   }
 
-  handler(
-    event: Electron.CrossProcessExports.IpcMainInvokeEvent,
-    args: any
-  ): any {
+  handler(): any {
     const wm = this.getEKernel().getWindowManager();
     wm.close(KernelWindowName.MAIN);
   }

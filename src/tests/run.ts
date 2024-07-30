@@ -11,7 +11,7 @@ const [testPath] =XUtil.setupEnvironment([__dirname,'..','..'],['data','config']
 const kernel = new ElectronKernel( { appName, appCode, pathOverride: testPath });
 
 
-kernel.setTriggerFunction("pre",async (ik)=>{
+kernel.on("pre",async (ik)=>{
 
   const ek =(ik as ElectronKernel );
   app.whenReady().then(async () => {
@@ -19,6 +19,6 @@ kernel.setTriggerFunction("pre",async (ik)=>{
     await installExtension(REDUX_DEVTOOLS)
     await installExtension(VUEJS3_DEVTOOLS)
   });
-  ek.electronPre(ik);
+  ek.electronPre();
 })
 kernel.start();

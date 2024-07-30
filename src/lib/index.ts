@@ -29,7 +29,7 @@ export enum ElectronGlobals {
 export interface IWindow {
   create(
     key: string,
-    fc: (prop: BrowserWindowConstructorOptions) => BrowserWindow
+    fc: (prop: BrowserWindowConstructorOptions) => BrowserWindow,
   ): BrowserWindow;
   get(window: string): BrowserWindow | undefined;
   has(window: string): boolean;
@@ -59,38 +59,42 @@ export interface KeyType {
 export type IBaseKernelModule<
   T extends IDataBase<any, any> | null,
   P extends IBaseClient | null,
-  C extends IBaseCache | null
+  C extends IBaseCache | null,
 > = ICoreKernelModule<IKernel, T, P, C, null>;
 
 export type IBaseAction<
   K extends IKernel = IKernel,
   T extends IDataBase<any, any> | null = any,
   P extends IBaseClient | null = any,
-  C extends IBaseCache | null = any
+  C extends IBaseCache | null = any,
 > = ICoreAction<K, T, P, C>;
 
 export type IBaseService<
   K extends IKernel = IKernel,
   T extends IDataBase<any, any> | null = any,
   P extends IBaseClient | null = any,
-  C extends IBaseCache | null = any
+  C extends IBaseCache | null = any,
 > = ICoreService<K, T, P, C>;
 export type IBaseClient<
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   K extends IKernel = IKernel,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   T extends IDataBase<any, any> | null = any,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   P extends IBaseClient | null = any,
-  C extends IBaseCache | null = any
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  C extends IBaseCache | null = any,
 > = ICoreClient;
 export type IBaseBrige = ICoreBridge;
 export type IBaseCache<
   K extends IKernel = IKernel,
   T extends IDataBase<any, any> | null = any,
   P extends IBaseClient | null = any,
-  C extends IBaseCache | null = any
+  C extends IBaseCache | null = any,
 > = ICoreCache<K, T, P, C>;
 export type IBaseElement<
   K extends IKernel = IKernel,
   T extends IDataBase<any, any> | null = any,
   P extends IBaseClient | null = any,
-  C extends IBaseCache | null = any
+  C extends IBaseCache | null = any,
 > = ICoreElement<K, T, P, C>;

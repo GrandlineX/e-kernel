@@ -14,7 +14,7 @@ export default function initTray(kernel: IKernel) {
     {
       label: 'Open',
       type: 'normal',
-      click: (menuItem) => {
+      click: () => {
         kernel.closeAllWindows();
         createWindow(kernel, false);
       },
@@ -24,7 +24,7 @@ export default function initTray(kernel: IKernel) {
     rows.push({
       label: 'Dev Mode',
       type: 'normal',
-      click: (menuItem) => {
+      click: () => {
         kernel.getMainWindow()?.webContents.openDevTools();
       },
     });
