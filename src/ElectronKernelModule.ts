@@ -22,7 +22,7 @@ export default class ElectronKernelModule extends BaseKernelModule<
       new A.CloseWindowAction(this),
       new A.MainWindowAction(this),
       new A.MaximizeAction(this),
-      new A.MinimizeAction(this)
+      new A.MinimizeAction(this),
     );
 
     this.addService(new OfflineService(this));

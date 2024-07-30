@@ -10,7 +10,7 @@ export default class AlertAction extends BaseAction {
 
   handler(
     event: Electron.IpcMainInvokeEvent,
-    args: { title: string; body: string }
+    args: { title: string; body: string },
   ): any {
     const { title, body } = args;
     showNotification(title, body);

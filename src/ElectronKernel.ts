@@ -1,9 +1,4 @@
-import CoreKernel, {
-  CoreLogger,
-  ICoreCClient,
-  ICoreKernel,
-  XUtil,
-} from '@grandlinex/core';
+import CoreKernel, { CoreLogger, ICoreCClient, XUtil } from '@grandlinex/core';
 import { app, BrowserWindow, Tray } from 'electron';
 import * as Path from 'path';
 import { ElectronGlobals, IKernel, KernelWindowName } from './lib';
@@ -45,7 +40,7 @@ export default class ElectronKernel
     const { appRoot, preloadRoot } = config;
 
     this.setBaseModule(new ElectronKernelModule(this));
-    this.appRoot = appRoot || Path.join(__dirname, '..', 'res', 'index.html');
+    this.appRoot = appRoot ?? Path.join(__dirname, '..', 'res', 'index.html');
     this.preloadRoot =
       preloadRoot || Path.join(__dirname, '..', 'res', 'preload.html');
     this.tray = null;
@@ -53,16 +48,16 @@ export default class ElectronKernel
     const store = this.getConfigStore();
     store.set(
       ElectronGlobals.GLX_IMG_ICON,
-      Path.join(__dirname, '..', 'res', 'img', 'favicon.png')
+      Path.join(__dirname, '..', 'res', 'img', 'favicon.png'),
     );
     store.set(
       ElectronGlobals.GLX_IMG_THUMP,
-      Path.join(__dirname, '..', 'res', 'img', 'favicon.png')
+      Path.join(__dirname, '..', 'res', 'img', 'favicon.png'),
     );
     this.electronPre = this.electronPre.bind(this);
     this.electronStart = this.electronStart.bind(this);
-    this.setTriggerFunction('pre', this.electronPre);
-    this.setTriggerFunction('start', this.electronStart);
+    this.on('pre', this.electronPre);
+    this.on('start', this.electronStart);
   }
 
   async setPreload(title: string): Promise<void> {
@@ -87,7 +82,7 @@ export default class ElectronKernel
     });
   }
 
-  async electronPre(ik: ICoreKernel<any>): Promise<unknown> {
+  async electronPre(): Promise<unknown> {
     this.debug('preload');
     return new Promise((resolve) => {
       app.on('ready', async () => {
@@ -97,7 +92,7 @@ export default class ElectronKernel
     });
   }
 
-  async electronStart(ik: ICoreKernel<any>): Promise<unknown> {
+  async electronStart(): Promise<unknown> {
     await XUtil.sleep(2000);
     initTray(this);
     const newUser = !this.getDb()?.configExist('hash');

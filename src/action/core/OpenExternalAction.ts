@@ -10,7 +10,7 @@ export default class OpenExternalAction extends BaseAction {
 
   handler(
     event: Electron.IpcMainInvokeEvent,
-    args: { url: string; external: boolean; title?: string }
+    args: { url: string; external: boolean; title?: string },
   ): any {
     const { url, external, title } = args;
     if (external) {

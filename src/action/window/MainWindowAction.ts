@@ -14,7 +14,7 @@ export default class MainWindowAction extends BaseAction {
     args: {
       action: string;
       data?: any;
-    }
+    },
   ): Promise<any> {
     let main = this.getEKernel().getWindowManager().get(KernelWindowName.MAIN);
 

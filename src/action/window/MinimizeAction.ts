@@ -7,10 +7,7 @@ export default class MinimizeAction extends BaseAction {
     this.handler = this.handler.bind(this);
   }
 
-  handler(
-    event: Electron.CrossProcessExports.IpcMainInvokeEvent,
-    args: any
-  ): any {
+  handler(): any {
     const window = this.getEKernel().getMainWindow();
     window?.minimize();
   }

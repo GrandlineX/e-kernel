@@ -7,7 +7,7 @@ export default class ReloadAction extends BaseAction {
     this.handler = this.handler.bind(this);
   }
 
-  handler(event: Electron.IpcMainInvokeEvent, args: any): any {
+  handler(): any {
     this.getEKernel().reload();
   }
 }

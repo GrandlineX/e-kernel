@@ -7,10 +7,7 @@ export default class MaximizeAction extends BaseAction {
     this.handler = this.handler.bind(this);
   }
 
-  async handler(
-    event: Electron.CrossProcessExports.IpcMainInvokeEvent,
-    args: any
-  ): Promise<void> {
+  async handler(): Promise<void> {
     const window = this.getEKernel().getMainWindow();
     if (window) {
       if (window.isMaximized()) {

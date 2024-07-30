@@ -8,7 +8,7 @@ export default class ConfigOpenAction extends BaseAction {
     this.handler = this.handler.bind(this);
   }
 
-  async handler(event: Electron.IpcMainInvokeEvent, args: any) {
+  async handler() {
     return openConfigFolder(this.getKernel());
   }
 }

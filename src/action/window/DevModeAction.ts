@@ -7,7 +7,7 @@ export default class DevModeAction extends BaseAction {
     this.handler = this.handler.bind(this);
   }
 
-  handler(event: Electron.IpcMainInvokeEvent, args: any): any {
+  handler(): any {
     const window = this.getEKernel().getMainWindow();
     if (window !== null) {
       window.webContents.openDevTools();
