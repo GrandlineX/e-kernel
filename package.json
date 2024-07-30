@@ -1,6 +1,6 @@
 {
   "name": "@grandlinex/e-kernel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GrandLineX Electron Kernel",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,7 +25,7 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "@electron/rebuild": "3.6.0",
-    "@grandlinex/core": "1.0.0",
+    "@grandlinex/core": "1.0.1",
     "dotenv": "16.4.5",
     "electron": "31.3.1",
     "node-abi": "3.65.0"
