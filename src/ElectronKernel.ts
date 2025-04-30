@@ -95,9 +95,8 @@ export default class ElectronKernel
   async electronStart(): Promise<unknown> {
     await XUtil.sleep(2000);
     initTray(this);
-    const newUser = !this.getDb()?.configExist('hash');
     this.windowManager?.hide(KernelWindowName.PRELOAD);
-    await createWindow(this, newUser);
+    await this.openNewWindow();
     return undefined;
   }
 
@@ -130,7 +129,7 @@ export default class ElectronKernel
   }
 
   async openNewWindow(): Promise<void> {
-    await createWindow(this, false);
+    await createWindow(this);
   }
 
   async reload(): Promise<void> {

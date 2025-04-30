@@ -24,3 +24,4 @@ coverage
 .npmrc
 junit.xml
 .github
+e-kernel-ui

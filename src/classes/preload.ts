@@ -20,7 +20,7 @@ export const coreFunctions = {
   setConfig: (args: { key: string; value: string }) =>
     ipcRenderer.invoke('config-set', args),
   getConfig: (args: { key: string }) =>
-    ipcRenderer.invoke('config-set', args) as Promise<ConfigType | undefined>,
+    ipcRenderer.invoke('config-get', args) as Promise<ConfigType | undefined>,
 };
 export type ICoreFunctions = typeof coreFunctions;
 

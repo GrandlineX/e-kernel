@@ -1,0 +1,25 @@
+{
+  "name": "@grandlinex/e-kernel-ui",
+  "version": "1.0.2",
+  "description": "GrandLineX Electron Kernel - UI",
+  "main": "",
+  "types": "index.d.ts",
+  "keywords": [
+    "typescript",
+    "framework",
+    "electron",
+    "server",
+    "backend"
+  ],
+  "author": {
+    "name": "Elschnagoo"
+  },
+  "scripts": {
+    "pack":"npm pack"
+  },
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GrandlineX/e-kernel.git"
+  }
+}

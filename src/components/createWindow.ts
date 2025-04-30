@@ -1,7 +1,7 @@
 import { BrowserWindow } from 'electron';
 import { IKernel, KernelWindowName } from '../lib';
 
-export default async function createWindow(kernel: IKernel, newUser: boolean) {
+export default async function createWindow(kernel: IKernel) {
   const wm = kernel.getWindowManager();
 
   const mainWindow = wm.create(KernelWindowName.MAIN, (c) => {
@@ -16,9 +16,6 @@ export default async function createWindow(kernel: IKernel, newUser: boolean) {
     await mainWindow.loadFile(kernel.getAppRoot());
   }
   if (kernel.hasCryptoClient()) {
-    // mainWindow.setTouchBar(SpinTouchBaar(kernel));
-    mainWindow.maximize();
-  } else if (newUser) {
     mainWindow.maximize();
   }
 }

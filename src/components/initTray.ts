@@ -16,7 +16,7 @@ export default function initTray(kernel: IKernel) {
       type: 'normal',
       click: () => {
         kernel.closeAllWindows();
-        createWindow(kernel, false);
+        createWindow(kernel);
       },
     },
   ];

@@ -19,7 +19,7 @@ export default class MainWindowAction extends BaseAction {
     let main = this.getEKernel().getWindowManager().get(KernelWindowName.MAIN);
 
     if (!main) {
-      await createWindow(this.getEKernel(), false);
+      await createWindow(this.getEKernel());
       main = this.getEKernel().getWindowManager().get(KernelWindowName.MAIN);
       let count = 0;
       while (main?.webContents.isLoading() && count < 10) {
