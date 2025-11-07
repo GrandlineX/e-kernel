@@ -1,6 +1,6 @@
 {
   "name": "@grandlinex/e-kernel-ui",
-  "version": "1.0.2",
+  "version": "1.2.0",
   "description": "GrandLineX Electron Kernel - UI",
   "main": "",
   "types": "index.d.ts",

@@ -1,17 +1,14 @@
 import { IDataBase } from '@grandlinex/core';
-import { BaseAction } from '../../classes';
-import { IBaseKernelModule, IKernel } from '../../lib';
+import { BaseAction, XActionEvent } from '../../classes';
+import { IBaseKernelModule } from '../../lib';
 
-export default class ConfigSetAction extends BaseAction<
-  IKernel,
-  IDataBase<any, any>
-> {
+export default class ConfigSetAction extends BaseAction<IDataBase<any, any>> {
   constructor(module: IBaseKernelModule<any, any, any>) {
     super('config-get', module);
     this.handler = this.handler.bind(this);
   }
 
-  handler(event: Electron.IpcMainInvokeEvent, args: { key: string }): any {
+  async handler({ args }: XActionEvent<{ key: string }>) {
     return this.getModule().getDb().getConfig(args.key);
   }
 }

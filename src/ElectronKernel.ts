@@ -71,6 +71,7 @@ export default class ElectronKernel
           resizable: false,
           icon: conf.icon,
           frame: false,
+          webPreferences: conf.webPreferences,
         });
         preWin.setTitle(this.getAppName());
         return preWin;

@@ -1,5 +1,5 @@
 import { XUtil } from '@grandlinex/core';
-import { BaseAction } from '../../classes';
+import { BaseAction, XActionEvent } from '../../classes';
 import { IBaseKernelModule, KernelWindowName } from '../../lib';
 import createWindow from '../../components/createWindow';
 
@@ -9,13 +9,7 @@ export default class MainWindowAction extends BaseAction {
     this.handler = this.handler.bind(this);
   }
 
-  async handler(
-    event: Electron.CrossProcessExports.IpcMainInvokeEvent,
-    args: {
-      action: string;
-      data?: any;
-    },
-  ): Promise<any> {
+  async handler({ args }: XActionEvent<{ action: string; data?: any }>) {
     let main = this.getEKernel().getWindowManager().get(KernelWindowName.MAIN);
 
     if (!main) {

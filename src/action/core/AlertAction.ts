@@ -1,4 +1,4 @@
-import { BaseAction } from '../../classes';
+import { BaseAction, XActionEvent } from '../../classes';
 import { IBaseKernelModule } from '../../lib';
 import showNotification from '../../utils/showNotification';
 
@@ -8,10 +8,7 @@ export default class AlertAction extends BaseAction {
     this.handler = this.handler.bind(this);
   }
 
-  handler(
-    event: Electron.IpcMainInvokeEvent,
-    args: { title: string; body: string },
-  ): any {
+  async handler({ args }: XActionEvent<{ title: string; body: string }>) {
     const { title, body } = args;
     showNotification(title, body);
     return null;

@@ -1,5 +1,5 @@
-import BaseAction from '../../classes/BaseAction';
 import { IBaseKernelModule } from '../../lib';
+import { BaseAction } from '../../classes';
 
 export default class ReloadAction extends BaseAction {
   constructor(module: IBaseKernelModule<any, any, any>) {
@@ -7,7 +7,7 @@ export default class ReloadAction extends BaseAction {
     this.handler = this.handler.bind(this);
   }
 
-  handler(): any {
+  async handler() {
     this.getEKernel().reload();
   }
 }

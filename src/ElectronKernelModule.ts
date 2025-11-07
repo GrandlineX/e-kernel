@@ -1,4 +1,4 @@
-import { OfflineService } from '@grandlinex/core';
+import { BackgroundService } from '@grandlinex/core';
 import { BaseKernelModule } from './classes';
 import { IKernel } from './lib';
 import * as A from './action';
@@ -25,7 +25,7 @@ export default class ElectronKernelModule extends BaseKernelModule<
       new A.MinimizeAction(this),
     );
 
-    this.addService(new OfflineService(this));
+    this.addService(new BackgroundService(this));
   }
 
   initModule(): Promise<void> {

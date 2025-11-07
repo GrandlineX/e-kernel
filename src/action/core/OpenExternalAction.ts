@@ -1,5 +1,5 @@
 import { BrowserWindow, shell } from 'electron';
-import BaseAction from '../../classes/BaseAction';
+import { BaseAction, XActionEvent } from '../../classes/BaseAction';
 import { IBaseKernelModule } from '../../lib';
 
 export default class OpenExternalAction extends BaseAction {
@@ -8,10 +8,13 @@ export default class OpenExternalAction extends BaseAction {
     this.handler = this.handler.bind(this);
   }
 
-  handler(
-    event: Electron.IpcMainInvokeEvent,
-    args: { url: string; external: boolean; title?: string },
-  ): any {
+  async handler({
+    args,
+  }: XActionEvent<{
+    url: string;
+    external: boolean;
+    title?: string;
+  }>) {
     const { url, external, title } = args;
     if (external) {
       shell.openExternal(url);

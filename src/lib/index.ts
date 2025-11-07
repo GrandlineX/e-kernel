@@ -49,6 +49,7 @@ export interface IKernel extends ICoreKernel<ICoreCClient> {
   getTray(): Tray | null;
   openNewWindow(): void;
   reload(): void;
+  // TODO: add more methods
 }
 
 export interface KeyType {

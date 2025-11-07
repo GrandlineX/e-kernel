@@ -6,10 +6,11 @@ import {
   CoreLoopService as BaseLoopService,
   CoreService as BaseService,
 } from '@grandlinex/core';
-import BaseAction from './BaseAction';
 import WindowManager from './WindowManager';
 import BaseKernelModule from './BaseKernelModule';
 import { GLXElectronAPI, ICoreFunctions, IWindowFunctions } from './preload';
+
+export * from './BaseAction';
 
 export {
   WindowManager,
@@ -18,7 +19,6 @@ export {
   BaseService,
   BaseElement,
   BaseCache,
-  BaseAction,
   BaseClient,
   BaseBridge,
   GLXElectronAPI,

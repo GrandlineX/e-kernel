@@ -1,4 +1,4 @@
-import { BaseAction } from '../../classes';
+import { BaseAction, XActionEvent } from '../../classes';
 import { IBaseKernelModule } from '../../lib';
 
 export default class ConfigSetAction extends BaseAction {
@@ -7,10 +7,7 @@ export default class ConfigSetAction extends BaseAction {
     this.handler = this.handler.bind(this);
   }
 
-  handler(
-    event: Electron.IpcMainInvokeEvent,
-    args: { key: string; value: string },
-  ): any {
+  async handler({ args }: XActionEvent<{ key: string; value: string }>) {
     this.getModule().getDb()?.setConfig(args.key, args.value);
     return true;
   }
