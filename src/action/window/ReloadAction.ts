@@ -8,6 +8,6 @@ export default class ReloadAction extends BaseAction {
   }
 
   async handler() {
-    this.getEKernel().reload();
+    this.getKernel().reload();
   }
 }

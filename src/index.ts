@@ -6,6 +6,7 @@ import ElectronKernel from './ElectronKernel';
 import ElectronKernelModule from './ElectronKernelModule';
 import isDev from './utils/isDev';
 
+export * from './utils/OSUtil';
 export * from './classes';
 export * from './lib';
 export * from './action';

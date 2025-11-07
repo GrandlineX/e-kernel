@@ -8,7 +8,7 @@ export default class DevModeAction extends BaseAction {
   }
 
   async handler() {
-    const window = this.getEKernel().getMainWindow();
+    const window = this.getKernel().getMainWindow();
     if (window !== null) {
       window.webContents.openDevTools();
     }

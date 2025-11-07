@@ -8,7 +8,7 @@ export default class MinimizeAction extends BaseAction {
   }
 
   async handler() {
-    const window = this.getEKernel().getMainWindow();
+    const window = this.getKernel().getMainWindow();
     window?.minimize();
   }
 }

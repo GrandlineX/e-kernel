@@ -47,24 +47,60 @@ export default class WindowManager implements IWindow {
     return win;
   }
 
+  /**
+   * Get Window
+   * @param window window name
+   */
   get(window: string) {
     return this.winMap.get(window);
   }
 
+  /**
+   * Has Window
+   * @param window window name
+   */
   has(window: string) {
     return this.winMap.has(window);
   }
 
+  /**
+   * Hide Window
+   * @param window window name
+   */
   hide(window: string) {
     this.get(window)?.hide();
   }
 
+  /**
+   * Show Window
+   * @param window window name
+   */
   show(window: string): boolean {
     if (!this.has(window)) {
       return false;
     }
     try {
       this.get(window)?.show();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /**
+   * Send Message to Window
+   * @param window window name
+   * @param channel channel name
+   * @param args arguments
+   * @returns success
+   */
+  sendMessage(window: string, channel: string, args: any[]): boolean {
+    if (!this.has(window)) {
+      return false;
+    }
+    try {
+      const wd = this.get(window)!;
+      wd.webContents.send(channel, args);
       return true;
     } catch (e) {
       return false;

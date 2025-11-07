@@ -8,7 +8,7 @@ export default class MaximizeAction extends BaseAction {
   }
 
   async handler(): Promise<void> {
-    const window = this.getEKernel().getMainWindow();
+    const window = this.getKernel().getMainWindow();
     if (window) {
       if (window.isMaximized()) {
         window.unmaximize();

@@ -19,7 +19,7 @@ export default class OpenExternalAction extends BaseAction {
     if (external) {
       shell.openExternal(url);
     } else {
-      const wm = this.getEKernel().getWindowManager();
+      const wm = this.getKernel().getWindowManager();
       const mainWindow = wm.create(url, (c) => {
         return new BrowserWindow({
           width: c.width,

@@ -79,7 +79,7 @@ export default class ElectronKernel
     }
     const version = app.getVersion();
     await win.loadFile(this.preloadRoot, {
-      search: `${version}& ${title}`,
+      search: `${version}&${title}`,
     });
   }
 
@@ -129,6 +129,10 @@ export default class ElectronKernel
     return this.tray;
   }
 
+  /**
+   * OVERRIDING THIS TO CREATE OWN MAIN WINDOW FUNCTION
+   * @return void
+   */
   async openNewWindow(): Promise<void> {
     await createWindow(this);
   }

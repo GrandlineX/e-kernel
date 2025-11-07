@@ -1,6 +1,6 @@
 {
   "name": "@grandlinex/e-kernel",
-  "version": "1.2.0-alpha.2",
+  "version": "1.2.0",
   "description": "GrandLineX Electron Kernel",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -1,7 +1,6 @@
 import { XUtil } from '@grandlinex/core';
 import { BaseAction, XActionEvent } from '../../classes';
 import { IBaseKernelModule, KernelWindowName } from '../../lib';
-import createWindow from '../../components/createWindow';
 
 export default class MainWindowAction extends BaseAction {
   constructor(moduel: IBaseKernelModule<any, any, any>) {
@@ -10,11 +9,11 @@ export default class MainWindowAction extends BaseAction {
   }
 
   async handler({ args }: XActionEvent<{ action: string; data?: any }>) {
-    let main = this.getEKernel().getWindowManager().get(KernelWindowName.MAIN);
+    let main = this.getKernel().getWindowManager().get(KernelWindowName.MAIN);
 
     if (!main) {
-      await createWindow(this.getEKernel());
-      main = this.getEKernel().getWindowManager().get(KernelWindowName.MAIN);
+      await this.getKernel().openNewWindow();
+      main = this.getKernel().getWindowManager().get(KernelWindowName.MAIN);
       let count = 0;
       while (main?.webContents.isLoading() && count < 10) {
         count++;

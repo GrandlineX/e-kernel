@@ -47,7 +47,7 @@ export interface IKernel extends ICoreKernel<ICoreCClient> {
   getWindowManager(): IWindow;
   setTray(tray: Tray | null): void;
   getTray(): Tray | null;
-  openNewWindow(): void;
+  openNewWindow(): Promise<void>;
   reload(): void;
   // TODO: add more methods
 }

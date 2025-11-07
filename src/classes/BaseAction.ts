@@ -27,8 +27,4 @@ export abstract class BaseAction<
       }),
     );
   }
-
-  getEKernel(): IKernel {
-    return this.getKernel() as IKernel;
-  }
 }

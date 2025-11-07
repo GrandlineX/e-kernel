@@ -8,7 +8,7 @@ export default class CloseWindowAction extends BaseAction {
   }
 
   async handler() {
-    const wm = this.getEKernel().getWindowManager();
+    const wm = this.getKernel().getWindowManager();
     wm.close(KernelWindowName.MAIN);
   }
 }
